@@ -1,0 +1,24 @@
+.breedList {
+    text-align:center;
+    width: 100%;
+    height:100%;
+    margin-top:5vh;
+}
+.mySpinner {
+    font-size: 20px;
+}
+.contentBreed {
+    margin-top:2vw;
+}
+.breedImg {
+    width:200px;
+    height:200px;
+    margin-top:5vh;
+}
+
+span {
+    text-transform:capitalize;
+    background-color:black;
+    color:white;
+    margin:1vw;
+}
