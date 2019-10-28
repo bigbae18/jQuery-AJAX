@@ -4,12 +4,12 @@
     });
 
     function addHandler() {
-        $('#breedList span').click((breed) => {
+        console.log('hii!');
+        $('#breeds div').click(function(breed) {
             $('#imgBreed').html('');
             $('#spinnerLoad').removeClass('d-none');
-            let $this = $(this);
-            getRandomImg($this.data('ref'));
-            console.log('done!')
+            let thisBreed = $(this);
+            getRandomImg(thisBreed.data('ref'));
         })
     }
 
@@ -21,10 +21,11 @@
                 type: "json"
             },
             success: function (response) {
+                console.log(response.message);
+                setTimeout(function () {
                     $('#spinnerLoad').addClass('d-none');
-                    $('#imgBreed').html(
-                        '<img src=' + response.message + '/>'
-                    );
+                    $('#imgBreed').html('<img src="' + response.message + '"></img>');
+                }, 1000);
             },
             error: function (err) {
                 console.log(
@@ -47,15 +48,15 @@
                     setTimeout(function () {
                         if (breed.length >= 1) {
                             for (i = 0; i < breed.length; i++) {
-                                $('#breeds').append('<span class="breedItem col btn btn-dark" data-ref="https://dog.ceo/api/breed/' + dog + '/' + breed[i] + '/images/random"> ' + breed[i] + ' ' + dog + '</span>')
+                                $('#breeds').append(`<div class="breedItem col btn btn-dark" data-ref="https://dog.ceo/api/breed/${dog}-${breed[i]}/image/random/">${breed[i]} ${dog}</div>`);
                             }
                         } else {
-                            $('#breeds').append('<span class="breedItem col btn btn-dark" data-ref="https://dog.ceo/api/breed/' + dog + '/images/random"> ' + dog + '</span>')
+                            $('#breeds').append(`<div class="breedItem col btn btn-dark" data-ref="https://dog.ceo/api/breed/${dog}/image/random/">${dog}</div>`);
                         };
                         $("#spinnerLoad").addClass('d-none');
                         console.log('done! getBreed');
                         addHandler();
-                    }, 700)
+                    }, 1000)
                 })
             },
             error: function (error) {
